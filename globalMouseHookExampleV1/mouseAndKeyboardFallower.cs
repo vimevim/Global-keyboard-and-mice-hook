@@ -26,15 +26,32 @@ namespace globalMouseHookExampleV1
             Hook.GlobalEvents().MouseDown += async (sender, e) =>
             {
                 this.Text = ($"Mouse {e.Button} Down");
+                richTextBox2.Text = richTextBox2.Text+e.Button+"\n";
             };
             //double click veriyor
             Hook.GlobalEvents().MouseDoubleClick += async (sender, e) =>
             {
                 this.Text = ($"Mouse {e.Button} button double clicked.");
+                richTextBox2.Text = richTextBox2.Text + e.Button + "\n";
             };
             Hook.GlobalEvents().KeyDown += async (sender, e) =>
             {
                 this.Text = ($"klavyedeki {e.KeyCode} tuşuna basılıyor.");
+
+                if (Convert.ToString(e.KeyCode) == "Return")
+                {
+                    richTextBox1.Text = richTextBox1.Text + "\n";
+                }
+                else if (Convert.ToString(e.KeyCode) == "Space")
+                {
+                    richTextBox1.Text = richTextBox1.Text + " ";
+
+                }
+                else
+                {
+                    richTextBox1.Text = richTextBox1.Text + e.KeyCode;
+                }
+
             };
             //klavyeden basılan tuşu veriyor.
             Hook.GlobalEvents().KeyUp += async (sender, e) =>
